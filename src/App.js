@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const data = [{"name":"shivam Patidar","age":20,"class":"12th"},
+  const data = [{"name":"shivam","age":20,"class":"12th"},
                 {"name":"Arpit Patidar","age":28,"class":"10th"},
                 {"name":"Ajay Patidar","age":22,"class":"11th"}];
   const functioncall =()=>{
