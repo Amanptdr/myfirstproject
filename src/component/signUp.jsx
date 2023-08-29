@@ -14,12 +14,18 @@ export default function SignUp() {
   });
   const submit = async () => {
     // await actions.postUserDetail(formData);
-    await axios.post(
-      "http://localhost:7000/app/register",
-      formData,
-      { headers: { "Content-Type": "application/json" } }
-      // { withCredentials: true }
-    );
+    await axios
+      .post("http://localhost:7000/app/register", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(function (response) {
+        console.log(response, "suceesssss");
+      })
+      .catch(function (error) {
+        console.log(error, "failled");
+      });
   };
 
   return (
