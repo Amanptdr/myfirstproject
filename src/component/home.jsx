@@ -3,24 +3,32 @@ import axios from "axios";
 // Define the Login function.
 export const Home = () => {
      const [message, setMessage] = useState('');
+
+     const testAPI = async () => {
+       await axios.get("http://localhost:8000/app/test", {
+         headers: {
+           "Content-Type": "application/json",
+         },
+       });
+     };
      useEffect(() => {
-        if(localStorage.getItem('access_token') === null){                   
-            window.location.href = '/login'
-        }
-        else{
+       if (localStorage.getItem("access_token") === null) {
+         testAPI();
+         //  window.location.href = "/login";
+       } else {
          (async () => {
            try {
-             const {data} = await axios.get(   
-                            'http://localhost:8000/home/', {
-                             headers: {
-                                'Content-Type': 'application/json'
-                             }}
-                           );
+             const { data } = await axios.get("http://localhost:8000/home/", {
+               headers: {
+                 "Content-Type": "application/json",
+               },
+             });
              setMessage(data.message);
-          } catch (e) {
-            console.log('not auth')
-          }
-         })()};
+           } catch (e) {
+             console.log("not auth");
+           }
+         })();
+       }
      }, []);
      return (
 
