@@ -58,22 +58,16 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import {Login} from "./component/login";
 import {Home} from "./component/home";
 import {Navigation} from './component/navigations';
-import {Logout} from './component/logout';
-<<<<<<< HEAD
+import { Logout } from './component/logout';
 import SignUp from './component/signUp';
-=======
->>>>>>> 98af72b58bf583f8777584c630055b375e2c0061
 function App() {
     return (
       <BrowserRouter>
         <Navigation />
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/login" element={<Login/>}/>
-<<<<<<< HEAD
+          <Route path="/login" element={<Login />} />
           <Route path='/signUp' element={<SignUp />} />
-=======
->>>>>>> 98af72b58bf583f8777584c630055b375e2c0061
           <Route path="/logout" element={<Logout/>}/>
         </Routes>
       </BrowserRouter>
