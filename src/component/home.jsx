@@ -12,17 +12,43 @@ export const Home = () => {
        });
      };
      useEffect(() => {
+       //  if (localStorage.getItem("access_token") === null) {
+       //    testAPI();
+       //    //  window.location.href = "/signUp";
+       //  } else {
+       //    (async () => {
+       //      try {
+       //        const { data } = await axios.get(
+       //          "http://localhost:7000/app/home/",
+       //          {
+       //            headers: {
+       //              Authorization: `${localStorage.getItem("access_token")}`,
+       //            },
+       //          }
+       //        );
+       //        setMessage(data.message);
+       //      } catch (e) {
+       //        console.log("not auth");
+       //      }
+       //    })();
+       //  }
+       testAPI();
        if (localStorage.getItem("access_token") === null) {
-         testAPI();
-         //  window.location.href = "/signUp";
+         window.location.href = "/login";
        } else {
          (async () => {
            try {
-             const { data } = await axios.get("http://localhost:8000/home/", {
-               headers: {
-                 "Content-Type": "application/json",
-               },
-             });
+             const { data } = await axios.get(
+               "http://localhost:7000/app/home/",
+               {
+                 headers: {
+                   "Content-Type": "application/json",
+                   Authorization: `Bearer ${localStorage.getItem(
+                     "access_token"
+                   )}`,
+                 },
+               }
+             );
              setMessage(data.message);
            } catch (e) {
              console.log("not auth");
