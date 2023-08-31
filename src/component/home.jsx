@@ -14,7 +14,7 @@ export const Home = () => {
      useEffect(() => {
        if (localStorage.getItem("access_token") === null) {
          testAPI();
-         window.location.href = "/signUp";
+         //  window.location.href = "/signUp";
        } else {
          (async () => {
            try {
