@@ -13,11 +13,12 @@ export const Login = () => {
                 password: password
                };
           // Create the POST requuest
-          const {data} = await                                                                            
-                         axios.post('http://localhost:8000/token/',
-                         user ,
-                         {headers: {'Content-Type': 'application/json'}},
-                         {withCredentials: true});
+          const { data } = await axios.post(
+            "http://localhost:7000/app/login/",
+            user,
+            { headers: { "Content-Type": "application/json" } },
+            { withCredentials: true }
+          );
 
          // Initialize the access & refresh token in localstorage.      
          localStorage.clear();
