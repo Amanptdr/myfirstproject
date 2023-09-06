@@ -8,18 +8,22 @@ export function Navigation() {
         setIsAuth(true); 
       }
     }, [isAuth]);
-     return ( 
-      <div>
-        <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="/">JWT Authentification</Navbar.Brand>            
-          <Nav className="me-auto"> 
-          {isAuth ? <Nav.Link href="/">Home</Nav.Link> : null}
-          </Nav>
-          <Nav>
-          {isAuth ? <Nav.Link href="/logout">Logout</Nav.Link> :  
-                    <Nav.Link href="/login">Login</Nav.Link>}
-          </Nav>
-        </Navbar>
+     return (
+       <div>
+         <Navbar bg="dark" variant="dark">
+           <Navbar.Brand href="/">JWT Authentification</Navbar.Brand>
+           <Nav className="me-auto">
+             {isAuth ? <Nav.Link href="/">Home</Nav.Link> : null}
+           </Nav>
+           <Nav>
+             {isAuth ? (
+               <Nav.Link href="/logout">Logout</Nav.Link>
+             ) : (
+               <Nav.Link href="/login">Login</Nav.Link>
+             )}
+           </Nav>
+           {!isAuth && <Nav.Link href="/signUp">Sign Up</Nav.Link>}
+         </Navbar>
        </div>
      );
 }

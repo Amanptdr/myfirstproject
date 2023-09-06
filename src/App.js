@@ -60,6 +60,7 @@ import {Home} from "./component/home";
 import {Navigation} from './component/navigations';
 import { Logout } from './component/logout';
 import SignUp from './component/signUp';
+import ArticalList from './component/Articles/List';
 function App() {
     return (
       <BrowserRouter>
@@ -69,6 +70,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path='/signUp' element={<SignUp />} />
           <Route path="/logout" element={<Logout/>}/>
+          <Route path="/article" element={<ArticalList />} />
         </Routes>
       </BrowserRouter>
     )

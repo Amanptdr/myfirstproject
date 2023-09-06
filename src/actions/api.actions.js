@@ -4,19 +4,52 @@ import API_URL from "../config";
 const ApiActions = () => {
       const fetchWrapper = useFetchWrapper();
       const postUserDetail = (data) => {
-            console.log(data, "222222222222222")
             return fetchWrapper.post(`app/register`, data).then((res) => {
                   if (res) {
                         console.log(res, "11111111111111111")
-                        // alertActions.success(Labels.Save_Success);
                   }
                   else {
-                        alert("11error")
+                        alert("error")
                   }
             })
       }
+
+      const getArticals = (data) => {
+            return fetchWrapper.get(`app/create-artical/`, data).then((res) => {
+                  if (res) {
+                        return res
+                  }
+                  else {
+                        alert("error")
+                  }
+            })
+      }
+
+      const postArticle = (data) => {
+            return fetchWrapper.post(`app/create-artical/`, data).then((res) => {
+                  try {
+                        alert(res.success)
+                  }
+                  catch {
+                        alert('ERROR')
+                  }
+            })
+      }
+      const deleteArticle = (id) => {
+            return fetchWrapper.delete(`app/create-artical/${id}`).then((res) => {
+            })
+      }
+      const updateArticle = (data) => {
+            return fetchWrapper.put(`app/create-artical/${data?.id}`, data).then((res) => {
+                  console.log(res)
+            })
+      }
       return {
-            postUserDetail
+            postUserDetail,
+            getArticals,
+            postArticle,
+            updateArticle,
+            deleteArticle
       }
 
 }

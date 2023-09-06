@@ -14,7 +14,7 @@ export const Login = () => {
        };
        // Create the POST requuest
        const { data } = await axios.post(
-         "http://localhost:7000/app/login/",
+         "http://localhost:7000/app/auth-token/",
          user,
          { headers: { "Content-Type": "application/json" } },
          { withCredentials: true }
@@ -29,7 +29,7 @@ export const Login = () => {
        axios.defaults.headers.common[
          "Authorization"
        ] = `Bearer ${data["access"]}`;
-       //  window.location.href = '/'
+       window.location.href = "/";
      }
     return(
       <div className="Auth-form-container">

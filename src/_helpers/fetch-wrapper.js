@@ -2,7 +2,7 @@ import API_URL from '../config';
 export { useFetchWrapper };
 
 function useFetchWrapper() {
-  const auth = []
+  const auth = localStorage.getItem('access_token')
   // const auth = useRecoilState(authAtom);
   // const alertActions = useAlertActions();
 
@@ -35,11 +35,11 @@ function useFetchWrapper() {
 
   function authHeader(url) {
     // return auth header with jwt if user is logged in and request is to the api url
-    const token = auth[0]?.token;
+    const token = auth;
     const isLoggedIn = !!token;
     const isApiUrl = url.startsWith(API_URL.API_URL);
     if (isLoggedIn && isApiUrl) {
-      return { Authorization: `JWT ${token}` };
+      return { Authorization: `Bearer ${token}` };
     } else {
       return {};
     }
@@ -52,14 +52,14 @@ function useFetchWrapper() {
       }
       const data = text && JSON.parse(text);
       if (!response.ok) {
-        if ([401, 403].includes(response.status) && auth[0]?.token) {
+        if ([401, 403].includes(response.status) && auth) {
           // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
           alert('Signature has expired')
           localStorage.removeItem('user');
           // history.push('/account/login');
-          window.location.href = '/#/login';
+          window.location.href = '/login';
         }
-        if ([500].includes(response.status) && auth[0]?.token) {
+        if ([500].includes(response.status) && auth) {
           alert('500 Internal Server Error')
         }
 
