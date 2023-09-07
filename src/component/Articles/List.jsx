@@ -10,6 +10,7 @@ export default function ArticalList() {
   const [articleList, setArticleList] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [isEdit, setIseEdit] = useState(false);
+  const [chatMsg, setChatMsg] = useState("");
   const [formData, setFormData] = useState({
     title: "",
     message: "",
@@ -77,8 +78,45 @@ export default function ArticalList() {
     await actions.deleteArticle(id);
     getArticalsList();
   };
+  console.log(window.location.host);
+  const onsendMsg = () => {
+    const chatSocket = new WebSocket("ws://" + "localhost:7000" + "/chat/");
+    // const user = localStorage.getItem('');
+    chatSocket.send(
+      JSON.stringify({
+        message: chatMsg,
+        username: "AMAN1 PATIDAR1",
+      })
+    );
+  };
   return (
     <>
+      <div
+        className="chat__item__container"
+        id="id_chat_item_container"
+        style={{ fontSize: "20px" }}
+      >
+        <br />
+        <input
+          type="text"
+          value={chatMsg}
+          onChange={(e) => {
+            setChatMsg(e.target.value);
+          }}
+          id="id_message_send_input"
+        />
+        <button
+          type="button"
+          id="id_message_send_button"
+          onClick={(e) => {
+            onsendMsg();
+          }}
+        >
+          Send Message
+        </button>
+        <br />
+        <br />
+      </div>
       <Button
         variant="primary"
         onClick={(e) => {

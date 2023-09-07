@@ -54,25 +54,32 @@
 
 
 import './App.css';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import {Login} from "./component/login";
-import {Home} from "./component/home";
-import {Navigation} from './component/navigations';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Login } from "./component/login";
+import { Home } from "./component/home";
+import { Navigation } from './component/navigations';
 import { Logout } from './component/logout';
 import SignUp from './component/signUp';
 import ArticalList from './component/Articles/List';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Chat from './component/chat/Chat';
+import Container from 'react-bootstrap/esm/Container';
+
 function App() {
-    return (
-      <BrowserRouter>
-        <Navigation />
+  return (
+    <BrowserRouter>
+      <Navigation />
+      <Container>
         <Routes>
-          <Route path="/" element={<Home/>}/>
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path='/signUp' element={<SignUp />} />
-          <Route path="/logout" element={<Logout/>}/>
+          <Route path="/logout" element={<Logout />} />
           <Route path="/article" element={<ArticalList />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
-      </BrowserRouter>
-    )
+      </Container>
+    </BrowserRouter>
+  )
 }
 export default App;
