@@ -44,7 +44,7 @@ export default function ArticalList() {
           <>
             <button
               onClick={(e) => {
-                updateArticle(row);
+                update(row);
               }}
             >
               EDIT
@@ -68,7 +68,7 @@ export default function ArticalList() {
       : await actions.postArticle(formData);
     getArticalsList();
   };
-  const updateArticle = async (data) => {
+  const update = async (data) => {
     setFormData({ ...data });
     setShowForm(!showForm);
     setIseEdit(!isEdit);
