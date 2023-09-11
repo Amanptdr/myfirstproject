@@ -25,6 +25,7 @@ export const Home = () => {
               Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
           });
+          localStorage.setItem("user", JSON.stringify(data));
           setResponse(data);
         } catch (e) {
           console.log("not auth");

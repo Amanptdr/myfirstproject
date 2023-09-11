@@ -11,6 +11,7 @@ export default function ArticalList() {
   const [showForm, setShowForm] = useState(false);
   const [isEdit, setIseEdit] = useState(false);
   const [chatMsg, setChatMsg] = useState("");
+  const [chatData, setChatData] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
     message: "",
@@ -78,17 +79,48 @@ export default function ArticalList() {
     await actions.deleteArticle(id);
     getArticalsList();
   };
-  console.log(window.location.host);
+  const chatSocket = new WebSocket("ws://localhost:7000");
+
   const onsendMsg = () => {
-    const chatSocket = new WebSocket("ws://" + "localhost:7000" + "/chat/");
-    // const user = localStorage.getItem('');
+    const user = JSON.parse(localStorage.getItem("user"));
     chatSocket.send(
       JSON.stringify({
         message: chatMsg,
-        username: "AMAN1 PATIDAR1",
+        username: user?.username,
       })
     );
   };
+
+  chatSocket.onopen = (event) => {
+    console.log("The connection was setup successfully!!!");
+    // if (chatSocket.readyState === WebSocket.OPEN) {
+    //   // The WebSocket is open, you can send data here.
+    //   chatSocket.send(
+    //     JSON.stringify({
+    //       message: chatMsg,
+    //       username: "AMAN1 PATIDAR1",
+    //     })
+    //   );
+    // }
+  };
+
+  chatSocket.onmessage = (event) => {
+    let data = JSON.parse(event.data);
+    setChatData([...chatData, data]);
+    console.log(data, "onmessageonmessageonmessage");
+    // Handle incoming WebSocket messages here.
+  };
+
+  chatSocket.onerror = (error) => {
+    // Handle WebSocket errors here.
+    console.log(error, "errorerrorerror");
+  };
+
+  chatSocket.onclose = (event) => {
+    console.log(event, "Something unexpected happened !");
+    // Handle WebSocket closure here.
+  };
+
   return (
     <>
       <div
@@ -117,7 +149,15 @@ export default function ArticalList() {
         <br />
         <br />
       </div>
-      <Button
+      {chatData?.map((item, index) => {
+        return (
+          <div key={index}>
+            <span>msg:{item.message}</span>
+            <span>user:{item.username}</span>
+          </div>
+        );
+      })}
+      {/* <Button
         variant="primary"
         onClick={(e) => {
           setShowForm(!showForm);
@@ -178,7 +218,7 @@ export default function ArticalList() {
             </div>
           </Row>
         )}
-      </Container>
+      </Container> */}
     </>
   );
 }

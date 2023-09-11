@@ -22,8 +22,6 @@ export const Login = () => {
 
        // Initialize the access & refresh token in localstorage.
        localStorage.clear();
-       console.log(data);
-       localStorage.setItem("user", data);
        localStorage.setItem("access_token", data.access);
        localStorage.setItem("refresh_token", data.refresh);
        axios.defaults.headers.common[
