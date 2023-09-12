@@ -79,7 +79,7 @@ export default function ArticalList() {
     await actions.deleteArticle(id);
     getArticalsList();
   };
-  const chatSocket = new WebSocket("ws://localhost:7000");
+  const chatSocket = new WebSocket("ws://localhost:7000/chat/");
 
   const onsendMsg = () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -152,8 +152,9 @@ export default function ArticalList() {
       {chatData?.map((item, index) => {
         return (
           <div key={index}>
-            <span>msg:{item.message}</span>
-            <span>user:{item.username}</span>
+            <span>msg : {item.message}</span>
+            <br></br>
+            <span>user : {item.username}</span>
           </div>
         );
       })}

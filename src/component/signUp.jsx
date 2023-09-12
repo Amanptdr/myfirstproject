@@ -10,7 +10,7 @@ export default function SignUp() {
     password2: "",
     first_name: "",
     last_name: "",
-    email: "amanpatidar@gmail.com",
+    email: "rahulsharma@gmail.com",
   });
   const submit = async () => {
     // await actions.postUserDetail(formData);
